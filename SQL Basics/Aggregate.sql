@@ -1,8 +1,8 @@
 USE whos_records;
 
-SELECT user_id, COUNT(order_id) AS number_of_orders
+SELECT user_id, order_date, COUNT(order_id) AS number_of_orders
 FROM orders
-GROUP BY user_id;
+GROUP BY order_date ORDER BY user_id;
 
 SELECT SUM(p.price * o.quantity) AS total_sales
 FROM orders o

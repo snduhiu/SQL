@@ -1,7 +1,7 @@
-CREATE DATABASE whos_records;
+CREATE DATABASE IF NOT EXISTS whos_records;
 USE whos_records;
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50),
     email VARCHAR(50) UNIQUE,
@@ -11,13 +11,13 @@ CREATE TABLE users (
 
 ALTER TABLE users ADD COLUMN phone VARCHAR(15);
 
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
     product_name VARCHAR(100),
     price DECIMAL(10, 2)
 );
 
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     product_id INT,
@@ -29,7 +29,7 @@ CREATE TABLE orders (
 
 ALTER TABLE orders MODIFY COLUMN order_date TIMESTAMP NULL;
 
-CREATE TABLE delivery (
+CREATE TABLE IF NOT EXISTS delivery (
 	delivery_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     product_id INT,
