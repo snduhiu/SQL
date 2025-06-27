@@ -9,6 +9,8 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE users ADD COLUMN phone VARCHAR(15);
+
 CREATE TABLE products (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
     product_name VARCHAR(100),
@@ -25,6 +27,8 @@ CREATE TABLE orders (
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
+ALTER TABLE orders MODIFY COLUMN order_date TIMESTAMP NULL;
+
 CREATE TABLE delivery (
 	delivery_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
@@ -35,5 +39,3 @@ CREATE TABLE delivery (
 );
 
 DROP TABLE delivery;
-
-ALTER TABLE users ADD COLUMN phone VARCHAR(15);
