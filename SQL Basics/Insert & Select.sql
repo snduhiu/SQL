@@ -18,11 +18,36 @@ VALUES
 ('Irene Mwende', 'irene.mwende@example.com', 'Meru', '+254799001122'),
 ('Eric Mutiso', 'eric.mutiso@example.com', 'Embu', '+254710112233');
 
+INSERT INTO users (name, email, location, phone)
+VALUES 
+('Kimathi Brian', 'kimbrian@example.com', 'Dandora', NULL),
+('Juma Ratif', 'ratifjuma@example.com', 'Ruiru', '789003587'),
+('Alice Mueni', NULL, NULL, '756234011');
+
 SELECT * FROM users;
 SELECT DISTINCT location FROM users;
 SELECT * FROM users WHERE name LIKE 'M%';
 SELECT * FROM users WHERE location IN ('Nairobi', 'Mombasa', 'Kisumu');
+SELECT * FROM users
+WHERE user_id NOT IN (SELECT user_id FROM orders);
 SELECT * FROM users WHERE location IS NULL;
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE users
+SET phone = SUBSTRING(phone, 5);
+SET SQL_SAFE_UPDATES = 1;
+
+ALTER TABLE users CHANGE name user_name VARCHAR(50);
+
+UPDATE users
+SET user_name = 'June Wilkista', location = 'Kawangware', email = 'junewilkista@gmail.com', phone = '789012346'
+WHERE user_id = 8;
+
+UPDATE users
+SET location = 'Kawangware'
+WHERE user_id = 15;
+
+DELETE FROM users WHERE user_id = 4;
 
 ALTER TABLE users DROP COLUMN created_at;
 
@@ -85,3 +110,7 @@ INSERT INTO orders (user_id, product_id, quantity, order_date) VALUES
 (1, 13, 2, '2025-06-15 10:50:00');
 
 SELECT * FROM orders;
+
+DELETE FROM orders WHERE user_id = 4;
+
+DELETE FROM orders WHERE order_id = 10;
